@@ -196,7 +196,7 @@ class RebalanceInTests(RebalanceBaseTest):
                 tasks += self._async_load_all_buckets(self.master, gen_delete, "delete", 0, batch_size=20000, pause_secs=5, timeout_secs=180)
         for task in tasks:
             task.result()
-        self.verify_cluster_stats(self.servers[:self.nodes_in + self.nodes_init])
+        self.verify_cluster_stats(self.servers[:self.nodes_in + self.nodes_init],timeout=600)
         self.verify_unacked_bytes_all_buckets()
 
 
